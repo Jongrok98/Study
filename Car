@@ -1,0 +1,40 @@
+//익명 자식 객체
+package coding.ch09.sec07;
+
+public class Car {
+    //필드에 Tire 객체 대입
+    private  Tire tire1 = new Tire();//이건 Tire객체를 만들어서 대입한거고
+    //필드에 익명 자식 객체 대입
+    private Tire tire2 = new Tire(){//new가 와서 객체를 만들어야하는데 중괄호가 와있네?
+        //이거는 Tire가 부모가 되어 Tire를 상속한 클래스를 중괄호 속의 내용과 같이 선언하고
+        //이 선언된걸 가지고 객체를 만들어라 라는 뜻
+        //이게 익명 자식 객체 이다.
+        //그니까 실시간으로 Tire객체를 상속한 자식 클래스를 정의하고 그걸 객체로 만들 후 대입한단 뜻
+        @Override
+        public void roll() {
+            System.out.println("익명 자식 Tire객체 1이 굴러갑니다");
+        }
+    };
+
+    public void run(){
+        tire1.roll();
+        tire2.roll();
+    }
+
+    //메소드(로컬 변수 이용)
+    public void run2() {
+        //로컬 변수에 익명 자식 객체 대입
+        Tire tire = new Tire() {
+            @Override
+            public void roll() {
+                System.out.println("익명 자식 Tire 객체 2가 굴러갑니다");
+            }
+        };
+        tire.roll();
+    }
+
+    //매개변수로 익명 자식 객체를 사용한 경우
+    public void run3(Tire tire){//여기엔 Tire의 부모 , 상속받은 자식 객체도 올 수 있다.
+        tire.roll();
+    }
+}
